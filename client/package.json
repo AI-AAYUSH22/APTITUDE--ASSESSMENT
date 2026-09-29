@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aptitude-assessment-platform": "file:..",
+    "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "canvas-confetti": "^1.9.4"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const apiRoutes = require('./routes/api');
 const adminApiRoutes = require('./routes/adminApi');
 
@@ -29,14 +30,17 @@ app.get('/api/health', (req, res) => {
 });
 
 // Serve frontend static build if present
-const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
-app.use(express.static(clientBuildPath));
+const rootDistPath = path.join(__dirname, '..', 'dist');
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
+const staticPath = fs.existsSync(rootDistPath) ? rootDistPath : clientDistPath;
+
+app.use(express.static(staticPath));
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ success: false, error: 'Endpoint not found' });
   }
-  res.sendFile(path.join(clientBuildPath, 'index.html'), (err) => {
+  res.sendFile(path.join(staticPath, 'index.html'), (err) => {
     if (err) {
       res.status(200).send('Assessment API Server is running. Client Vite dev server runs on port 5173.');
     }
