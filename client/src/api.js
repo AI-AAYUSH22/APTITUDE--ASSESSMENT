@@ -4,20 +4,45 @@ export async function fetchApi(endpoint, options = {}) {
   const adminToken = localStorage.getItem('apti_admin_token');
   const headers = {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
     ...(adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {}),
     ...(options.headers || {})
   };
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers
-  });
+  try {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers
+    });
 
-  const data = await response.json();
-  if (!response.ok || data.success === false) {
-    throw new Error(data.error || 'An unexpected error occurred');
+    const contentType = response.headers.get('content-type') || '';
+    let data;
+
+    if (contentType.includes('application/json')) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch (parseErr) {
+        if (!response.ok) {
+          throw new Error(response.status === 401 ? 'Invalid username or password' : `Server error (${response.status})`);
+        }
+        data = { success: true, data: text };
+      }
+    }
+
+    if (!response.ok || data.success === false) {
+      throw new Error(data.error || (response.status === 401 ? 'Invalid username or password' : 'An unexpected error occurred'));
+    }
+
+    return data;
+  } catch (err) {
+    if (err.message && err.message.includes('Failed to fetch')) {
+      throw new Error('Could not connect to server. Please ensure the backend is running.');
+    }
+    throw err;
   }
-  return data;
 }
 
 export const assessmentApi = {
