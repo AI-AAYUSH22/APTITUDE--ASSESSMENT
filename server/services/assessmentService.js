@@ -89,8 +89,10 @@ class AssessmentService {
       normAssessmentId = 'set-a';
     } else if (upperSet === 'SET_B' || upperSet === 'SET-B' || upperSet === 'SETB' || upperSet === 'SET B' || rawSet === 'set-b') {
       normAssessmentId = 'set-b';
+    } else if (upperSet === 'TE_AIML' || upperSet === 'TE-AIML' || upperSet === 'TE AIML' || upperSet === 'SET_C' || upperSet === 'SET-C' || rawSet === 'te-aiml') {
+      normAssessmentId = 'te-aiml';
     } else {
-      throw new Error('Please select a valid Assessment Set (Set A or Set B).');
+      throw new Error('Please select a valid Assessment Set (Set A, Set B, or TE AIML).');
     }
 
     const candidateName = (fullName || student_name || '').trim();

@@ -67,27 +67,39 @@ export default function LeaderboardPage({ onGoHome, defaultSet = 'set-a' }) {
         </p>
 
         {/* Set A vs Set B Toggle Tabs */}
-        <div className="flex items-center justify-center gap-3 mt-6">
+        {/* Set Toggle Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-6">
           <button
             onClick={() => { setActiveSet('set-a'); setPage(1); }}
-            className={`px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md ${
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer ${
               activeSet === 'set-a'
                 ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white ring-2 ring-indigo-500/40'
                 : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
             }`}
           >
-            Assessment 1 (Set A) Leaderboard
+            Set A Leaderboard
           </button>
 
           <button
             onClick={() => { setActiveSet('set-b'); setPage(1); }}
-            className={`px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md ${
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer ${
               activeSet === 'set-b'
                 ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white ring-2 ring-purple-500/40'
                 : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
             }`}
           >
-            Assessment 2 (Set B) Leaderboard
+            Set B Leaderboard
+          </button>
+
+          <button
+            onClick={() => { setActiveSet('te-aiml'); setPage(1); }}
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer ${
+              activeSet === 'te-aiml'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white ring-2 ring-emerald-500/40'
+                : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
+            }`}
+          >
+            TE AIML Leaderboard
           </button>
         </div>
       </div>

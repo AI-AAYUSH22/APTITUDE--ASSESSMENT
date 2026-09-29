@@ -63,7 +63,13 @@ export default function RegistrationPage({ assessment, onStartTest, onBack }) {
     setError('');
 
     try {
-      const targetSetId = formData.selectedSet === 'SET_B' ? 'set-b' : 'set-a';
+      let targetSetId = 'set-a';
+      if (formData.selectedSet === 'SET_B') {
+        targetSetId = 'set-b';
+      } else if (formData.selectedSet === 'TE_AIML' || formData.selectedSet === 'te-aiml') {
+        targetSetId = 'te-aiml';
+      }
+
       const res = await assessmentApi.startSession({
         assessmentId: targetSetId,
         assessment_id: targetSetId,
@@ -203,6 +209,9 @@ export default function RegistrationPage({ assessment, onStartTest, onBack }) {
                     <option value="SET_B" className="bg-slate-900 text-white">
                       Set B (Paper 2 • 30 Questions • 30 Mins)
                     </option>
+                    <option value="TE_AIML" className="bg-slate-900 text-white">
+                      TE AIML Engineering Aptitude Test (30 Questions • 60 Mins)
+                    </option>
                   </select>
                   <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
                     ▼
@@ -245,7 +254,7 @@ export default function RegistrationPage({ assessment, onStartTest, onBack }) {
                       name="organization"
                       value={formData.organization}
                       onChange={handleChange}
-                      placeholder="e.g. AIML Dept"
+                      placeholder="e.g. TE AIML"
                       className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 focus:border-indigo-500 text-white placeholder-slate-600 text-xs outline-none transition"
                     />
                   </div>
@@ -306,11 +315,13 @@ export default function RegistrationPage({ assessment, onStartTest, onBack }) {
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
                 <span className="text-slate-400 font-medium">Selected Assessment Paper:</span>
                 <span className={`px-2.5 py-1 rounded-lg font-bold text-xs ${
-                  isSetB 
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' 
-                    : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
+                  formData.selectedSet === 'TE_AIML'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                    : isSetB 
+                      ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' 
+                      : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
                 }`}>
-                  {isSetB ? 'Set B (Paper 2)' : 'Set A (Paper 1)'}
+                  {formData.selectedSet === 'TE_AIML' ? 'TE AIML Engineering Aptitude Test' : isSetB ? 'Set B (Paper 2)' : 'Set A (Paper 1)'}
                 </span>
               </div>
 
@@ -321,7 +332,9 @@ export default function RegistrationPage({ assessment, onStartTest, onBack }) {
 
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
                 <span className="text-slate-400 font-medium">Test Duration:</span>
-                <strong className="text-amber-400 font-mono text-sm">30 Minutes (Server Clock)</strong>
+                <strong className="text-amber-400 font-mono text-sm">
+                  {formData.selectedSet === 'TE_AIML' ? '60 Minutes' : '30 Minutes'} (Server Clock)
+                </strong>
               </div>
 
               <div className="flex items-center justify-between">

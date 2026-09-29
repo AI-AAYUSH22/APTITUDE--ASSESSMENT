@@ -230,6 +230,36 @@ function seedDefaultAssessments() {
     seedQuestionsFromFile('set-b', path.join(__dirname, '..', 'set_b_data.json'));
     console.log('Successfully initialized database and seeded Set A & Set B assessments!');
   }
+
+  const existingTeAiml = db.prepare('SELECT id FROM assessments WHERE id = ?').get('te-aiml');
+  if (!existingTeAiml) {
+    const insertAssessment = db.prepare(`
+      INSERT INTO assessments (id, title, description, durationMinutes, totalMarks, passPercentage, maxViolations, instructionsJson, isActive, allowReview)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    insertAssessment.run(
+      'te-aiml',
+      'TE AIML Engineering Aptitude Test',
+      'Official examination for TE AIML Engineering students evaluating Logic and Reasoning, Basic Mathematics, and DSA.',
+      60,
+      30,
+      40.0,
+      3,
+      JSON.stringify([
+        "All questions carry 1 mark each. There is no negative marking.",
+        "Total 30 multiple-choice questions across 3 sections (Logic & Reasoning, Basic Mathematics, DSA).",
+        "Total test duration is 60 minutes with server-side synchronization.",
+        "Use of calculators or electronic devices is not permitted.",
+        "Anti-cheat monitoring is strictly active with automated restricted submission upon violations."
+      ]),
+      1,
+      1
+    );
+
+    seedQuestionsFromFile('te-aiml', path.join(__dirname, '..', 'te_aiml_data.json'));
+    console.log('Successfully seeded TE AIML Engineering Aptitude Test!');
+  }
 }
 
 function seedQuestionsFromFile(assessmentId, filePath) {

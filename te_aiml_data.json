@@ -1,0 +1,512 @@
+[
+  {
+    "questionNumber": 1,
+    "section": "Logical Reasoning",
+    "questionText": "If all Bloops are Razzies and all Razzies are Lazzies, which conclusion is definitely true?",
+    "options": [
+      { "id": "A", "text": "All Bloops are Lazzies" },
+      { "id": "B", "text": "All Lazzies are Bloops" },
+      { "id": "C", "text": "All Lazzies are Razzies" },
+      { "id": "D", "text": "Some Razzies are not Lazzies" }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "All Bloops are Lazzies",
+    "explanation": "Since Bloops ⊆ Razzies and Razzies ⊆ Lazzies, by transitive property, all Bloops must be Lazzies.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 2,
+    "section": "Logical Reasoning",
+    "questionText": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+    "options": [
+      { "id": "A", "text": "0°" },
+      { "id": "B", "text": "7.5°" },
+      { "id": "C", "text": "15°" },
+      { "id": "D", "text": "22.5°" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "7.5°",
+    "explanation": "At 3:15, the minute hand is at 90° (3 on dial). In 15 minutes, the hour hand moves (15 × 0.5°) = 7.5° past 90°. Thus, angle = 97.5° - 90° = 7.5°.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 3,
+    "section": "Logical Reasoning",
+    "questionText": "In a row of students, Riya is 8th from the left and 12th from the right. How many students are in the row?",
+    "options": [
+      { "id": "A", "text": "18" },
+      { "id": "B", "text": "19" },
+      { "id": "C", "text": "20" },
+      { "id": "D", "text": "21" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "19",
+    "explanation": "Total number of students = Left position + Right position - 1 = 8 + 12 - 1 = 19.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 4,
+    "section": "Logical Reasoning",
+    "questionText": "Find the missing number in the series: 2, 6, 12, 20, 30, __",
+    "options": [
+      { "id": "A", "text": "40" },
+      { "id": "B", "text": "42" },
+      { "id": "C", "text": "44" },
+      { "id": "D", "text": "46" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "42",
+    "explanation": "The pattern is n(n+1): 1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42. (Differences increase by +2: +4, +6, +8, +10, +12).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 5,
+    "section": "Logical Reasoning",
+    "questionText": "A train 150 m long crosses a pole in 15 seconds. How long will it take to cross a 300 m long bridge?",
+    "options": [
+      { "id": "A", "text": "30 sec" },
+      { "id": "B", "text": "35 sec" },
+      { "id": "C", "text": "40 sec" },
+      { "id": "D", "text": "45 sec" }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "45 sec",
+    "explanation": "Speed of train = 150 m / 15 s = 10 m/s. Total distance to cross bridge = 150 m + 300 m = 450 m. Time required = 450 / 10 = 45 seconds.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 6,
+    "section": "Logical Reasoning",
+    "questionText": "Pointing to a photograph, a man says 'She is the daughter of my grandfather's only son.' How is the woman related to the man?",
+    "options": [
+      { "id": "A", "text": "Mother" },
+      { "id": "B", "text": "Aunt" },
+      { "id": "C", "text": "Sister" },
+      { "id": "D", "text": "Cousin" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "Sister",
+    "explanation": "The man's grandfather's only son is his father. The daughter of his father is his sister.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 7,
+    "section": "Logical Reasoning",
+    "questionText": "If FRIEND is coded as HUMJTK, how is CANDLE coded?",
+    "options": [
+      { "id": "A", "text": "ECODFH" },
+      { "id": "B", "text": "DCQHQK" },
+      { "id": "C", "text": "EBNGLF" },
+      { "id": "D", "text": "ECPFNG" }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "ECPFNG",
+    "explanation": "Each letter is shifted forward: C(+2)->E, A(+2)->C, N(+2)->P, D(+2)->F, L(+2)->N, E(+2)->G gives ECPFNG.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 8,
+    "section": "Logical Reasoning",
+    "questionText": "Statements: All cats are dogs. Some dogs are rats.\nConclusions: I) Some cats are rats. II) Some rats are cats. Which conclusion(s) follow?",
+    "options": [
+      { "id": "A", "text": "Only I follows" },
+      { "id": "B", "text": "Only II follows" },
+      { "id": "C", "text": "Both I and II follow" },
+      { "id": "D", "text": "Neither I nor II follows" }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "Neither I nor II follows",
+    "explanation": "The middle term 'dogs' is not distributed. The rats may only overlap with dogs outside cats, so neither conclusion is guaranteed.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 9,
+    "section": "Logical Reasoning",
+    "questionText": "A man walks 5 km North, turns right and walks 3 km, turns right again and walks 5 km. How far is he from his starting point?",
+    "options": [
+      { "id": "A", "text": "1 km" },
+      { "id": "B", "text": "2 km" },
+      { "id": "C", "text": "3 km" },
+      { "id": "D", "text": "5 km" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "3 km",
+    "explanation": "From (0,0): 5 km North -> (0,5), 3 km East -> (3,5), 5 km South -> (3,0). Distance from (0,0) is 3 km East.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 10,
+    "section": "Logical Reasoning",
+    "questionText": "Six people A, B, C, D, E, F sit in a circle. A is opposite D; B is between A and C. Who is opposite B?",
+    "options": [
+      { "id": "A", "text": "C" },
+      { "id": "B", "text": "E" },
+      { "id": "C", "text": "F" },
+      { "id": "D", "text": "Cannot be determined" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "E",
+    "explanation": "In standard circular arrangement of 6 seats with A at 1, D at 4, B at 2, and C at 3, the seat opposite B (position 2) is occupied by E (position 5).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 11,
+    "section": "Basic Mathematics",
+    "questionText": "If A = {1,2,3,4} and B = {3,4,5,6}, find |A ∪ B| − |A ∩ B|.",
+    "options": [
+      { "id": "A", "text": "4" },
+      { "id": "B", "text": "6" },
+      { "id": "C", "text": "8" },
+      { "id": "D", "text": "10" }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "4",
+    "explanation": "A ∪ B = {1, 2, 3, 4, 5, 6} (cardinality 6). A ∩ B = {3, 4} (cardinality 2). |A ∪ B| - |A ∩ B| = 6 - 2 = 4.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 12,
+    "section": "Basic Mathematics",
+    "questionText": "What is the probability of getting a sum of 8 when two dice are rolled?",
+    "options": [
+      { "id": "A", "text": "5/36" },
+      { "id": "B", "text": "6/36" },
+      { "id": "C", "text": "7/36" },
+      { "id": "D", "text": "4/36" }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "5/36",
+    "explanation": "Pairs with sum 8: (2,6), (3,5), (4,4), (5,3), (6,2) = 5 favorable outcomes out of 36 total. Probability = 5/36.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 13,
+    "section": "Basic Mathematics",
+    "questionText": "What is the rank of the matrix [[1,2,3], [4,5,6], [7,8,9]]?",
+    "options": [
+      { "id": "A", "text": "1" },
+      { "id": "B", "text": "2" },
+      { "id": "C", "text": "3" },
+      { "id": "D", "text": "0" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "2",
+    "explanation": "Row 2 - Row 1 = [3, 3, 3] and Row 3 - Row 2 = [3, 3, 3]. Row 3 = 2×Row 2 - Row 1, making Row 3 linearly dependent. The matrix has 2 linearly independent rows, so rank is 2.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 14,
+    "section": "Basic Mathematics",
+    "questionText": "If f(x) = x² − 3x + 2, find f'(x) at x = 2.",
+    "options": [
+      { "id": "A", "text": "0" },
+      { "id": "B", "text": "1" },
+      { "id": "C", "text": "2" },
+      { "id": "D", "text": "3" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "1",
+    "explanation": "The first derivative f'(x) = 2x - 3. At x = 2: f'(2) = 2(2) - 3 = 4 - 3 = 1.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 15,
+    "section": "Basic Mathematics",
+    "questionText": "How many ways can 5 students be arranged in a row if 2 specific students must always be together?",
+    "options": [
+      { "id": "A", "text": "24" },
+      { "id": "B", "text": "36" },
+      { "id": "C", "text": "48" },
+      { "id": "D", "text": "72" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "48",
+    "explanation": "Treat the 2 students as 1 unit: 4 units can be arranged in 4! = 24 ways. The 2 students can be arranged among themselves in 2! = 2 ways. Total = 24 × 2 = 48 ways.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 16,
+    "section": "Basic Mathematics",
+    "questionText": "Find the sum of the infinite geometric series: 1 + 1/2 + 1/4 + 1/8 + …",
+    "options": [
+      { "id": "A", "text": "1.5" },
+      { "id": "B", "text": "2" },
+      { "id": "C", "text": "2.5" },
+      { "id": "D", "text": "∞" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "2",
+    "explanation": "For an infinite geometric series with first term a = 1 and common ratio r = 1/2: Sum S = a / (1 - r) = 1 / (1 - 0.5) = 2.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 17,
+    "section": "Basic Mathematics",
+    "questionText": "What is the value of the definite integral of (2x + 1) from 0 to 1?",
+    "options": [
+      { "id": "A", "text": "1" },
+      { "id": "B", "text": "2" },
+      { "id": "C", "text": "3" },
+      { "id": "D", "text": "4" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "2",
+    "explanation": "∫ (2x + 1) dx = [x² + x] evaluated from 0 to 1 = (1² + 1) - (0 + 0) = 2.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 18,
+    "section": "Basic Mathematics",
+    "questionText": "If P(A) = 0.4, P(B) = 0.5 and P(A∩B) = 0.2, find P(A|B).",
+    "options": [
+      { "id": "A", "text": "0.2" },
+      { "id": "B", "text": "0.4" },
+      { "id": "C", "text": "0.5" },
+      { "id": "D", "text": "0.8" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "0.4",
+    "explanation": "Conditional probability P(A|B) = P(A ∩ B) / P(B) = 0.2 / 0.5 = 0.4.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 19,
+    "section": "Basic Mathematics",
+    "questionText": "What is the time complexity of multiplying two n×n matrices using the naive algorithm?",
+    "options": [
+      { "id": "A", "text": "O(n)" },
+      { "id": "B", "text": "O(n²)" },
+      { "id": "C", "text": "O(n³)" },
+      { "id": "D", "text": "O(n log n)" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "O(n³)",
+    "explanation": "Standard matrix multiplication requires 3 nested loops from 1 to n, performing n³ multiplications and additions.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 20,
+    "section": "Basic Mathematics",
+    "questionText": "Solve: log₂(x) + log₂(x − 2) = 3",
+    "options": [
+      { "id": "A", "text": "x = 4" },
+      { "id": "B", "text": "x = 6" },
+      { "id": "C", "text": "x = 2" },
+      { "id": "D", "text": "x = 8" }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "x = 4",
+    "explanation": "log₂(x(x - 2)) = 3 ⇒ x(x - 2) = 2³ = 8 ⇒ x² - 2x - 8 = 0 ⇒ (x - 4)(x + 2) = 0. Since domain requires x > 2, x = 4.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 21,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "Which data structure follows FIFO (First In First Out) order?",
+    "options": [
+      { "id": "A", "text": "Stack" },
+      { "id": "B", "text": "Queue" },
+      { "id": "C", "text": "Tree" },
+      { "id": "D", "text": "Graph" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Queue",
+    "explanation": "Queue is a linear data structure where elements are inserted at the rear and removed from the front following FIFO order.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 22,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "What is the time complexity of Linear Search in the worst case?",
+    "options": [
+      { "id": "A", "text": "O(1)" },
+      { "id": "B", "text": "O(log n)" },
+      { "id": "C", "text": "O(n)" },
+      { "id": "D", "text": "O(n²)" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "O(n)",
+    "explanation": "In the worst case (element at end or absent), Linear Search compares each of the n elements once, giving O(n) time.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 23,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "Which of the following is NOT a linear data structure?",
+    "options": [
+      { "id": "A", "text": "Array" },
+      { "id": "B", "text": "Linked List" },
+      { "id": "C", "text": "Stack" },
+      { "id": "D", "text": "Binary Tree" }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "Binary Tree",
+    "explanation": "Arrays, Linked Lists, Stacks, and Queues are linear. Trees and Graphs are non-linear hierarchical data structures.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 24,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "In a stack, which operation adds an element to the top?",
+    "options": [
+      { "id": "A", "text": "Pop" },
+      { "id": "B", "text": "Push" },
+      { "id": "C", "text": "Peek" },
+      { "id": "D", "text": "Insert" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Push",
+    "explanation": "Push adds an element to the top of the stack, while Pop removes the topmost element.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 25,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "What is the maximum number of nodes at level 2 of a binary tree? (Root is at level 0)",
+    "options": [
+      { "id": "A", "text": "2" },
+      { "id": "B", "text": "4" },
+      { "id": "C", "text": "6" },
+      { "id": "D", "text": "8" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "4",
+    "explanation": "Max nodes at level L of a binary tree = 2^L. For level 2: 2^2 = 4 nodes.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 26,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "Which sorting algorithm has the best average-case time complexity?",
+    "options": [
+      { "id": "A", "text": "Bubble Sort" },
+      { "id": "B", "text": "Selection Sort" },
+      { "id": "C", "text": "Merge Sort" },
+      { "id": "D", "text": "Insertion Sort" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "Merge Sort",
+    "explanation": "Merge Sort has an average-case time complexity of O(n log n), whereas Bubble, Selection, and Insertion sorts are O(n²).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 27,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "What does a linked list node contain?",
+    "options": [
+      { "id": "A", "text": "Only data" },
+      { "id": "B", "text": "Only address of next node" },
+      { "id": "C", "text": "Data and address of next node" },
+      { "id": "D", "text": "Data and index" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "Data and address of next node",
+    "explanation": "A standard singly linked list node contains a data payload and a pointer/reference to the subsequent node.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 28,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "Which traversal of a Binary Search Tree (BST) visits nodes in ascending order?",
+    "options": [
+      { "id": "A", "text": "Pre-order" },
+      { "id": "B", "text": "In-order" },
+      { "id": "C", "text": "Post-order" },
+      { "id": "D", "text": "Level-order" }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "In-order",
+    "explanation": "In-order traversal (Left, Root, Right) of any valid Binary Search Tree always outputs elements in sorted non-decreasing order.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 29,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "What is the time complexity of accessing an element in an array by index?",
+    "options": [
+      { "id": "A", "text": "O(n)" },
+      { "id": "B", "text": "O(log n)" },
+      { "id": "C", "text": "O(n²)" },
+      { "id": "D", "text": "O(1)" }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "O(1)",
+    "explanation": "Arrays occupy contiguous memory blocks, allowing direct address arithmetic: address = base + index * size in O(1) constant time.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 30,
+    "section": "DSA (Data Structures & Algorithms)",
+    "questionText": "Which data structure is used to implement recursion internally?",
+    "options": [
+      { "id": "A", "text": "Queue" },
+      { "id": "B", "text": "Array" },
+      { "id": "C", "text": "Stack" },
+      { "id": "D", "text": "Linked List" }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "Stack",
+    "explanation": "The call stack (function call stack) is used by language runtimes to preserve local variable frames and return addresses during recursive calls.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  }
+]

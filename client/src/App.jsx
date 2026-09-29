@@ -143,15 +143,19 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 AptiPro Assessment System • Restricted Evaluation Engine</p>
             <div className="flex items-center gap-4 text-slate-400">
-              <button onClick={() => handleNavigateLeaderboard('set-a')} className="hover:text-white">
+              <button onClick={() => handleNavigateLeaderboard('set-a')} className="hover:text-white cursor-pointer">
                 Set A Leaderboard
               </button>
               <span>•</span>
-              <button onClick={() => handleNavigateLeaderboard('set-b')} className="hover:text-white">
+              <button onClick={() => handleNavigateLeaderboard('set-b')} className="hover:text-white cursor-pointer">
                 Set B Leaderboard
               </button>
               <span>•</span>
-              <button onClick={() => setCurrentView('admin')} className="text-indigo-400 hover:underline">
+              <button onClick={() => handleNavigateLeaderboard('te-aiml')} className="hover:text-white cursor-pointer text-emerald-400">
+                TE AIML Leaderboard
+              </button>
+              <span>•</span>
+              <button onClick={() => setCurrentView('admin')} className="text-indigo-400 hover:underline cursor-pointer">
                 Admin Console
               </button>
             </div>
