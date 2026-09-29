@@ -35,9 +35,9 @@ export default function App() {
     }
   }, []);
 
-  const handleSelectAssessment = (assessment) => {
-    setSelectedAssessment(assessment);
-    setCurrentView('instructions');
+  const handleStartRegistration = () => {
+    setSelectedAssessment(null);
+    setCurrentView('registration');
   };
 
   const handleProceedToRegistration = () => {
@@ -46,6 +46,10 @@ export default function App() {
 
   const handleStartTest = (session) => {
     setSessionData(session);
+    setSelectedAssessment({
+      id: session.assessmentId,
+      title: session.assessmentTitle
+    });
     localStorage.setItem('apti_active_session_id', session.sessionId);
     setCurrentView('exam');
   };
@@ -83,7 +87,7 @@ export default function App() {
       <main className="flex-1">
         {currentView === 'landing' && (
           <LandingPage
-            onSelectAssessment={handleSelectAssessment}
+            onStartRegistration={handleStartRegistration}
             onNavigateAdmin={() => setCurrentView('admin')}
           />
         )}
@@ -100,7 +104,7 @@ export default function App() {
           <RegistrationPage
             assessment={selectedAssessment}
             onStartTest={handleStartTest}
-            onBack={() => setCurrentView('instructions')}
+            onBack={() => setCurrentView('landing')}
           />
         )}
 

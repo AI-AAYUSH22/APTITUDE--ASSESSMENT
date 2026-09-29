@@ -41,15 +41,34 @@ router.post('/candidate/verify', (req, res) => {
 // Start a new test session (or resume active one)
 router.post('/sessions/start', (req, res) => {
   try {
-    const { assessmentId, fullName, rollNumber, email, organization } = req.body;
-    if (!assessmentId || !fullName || !rollNumber) {
-      return res.status(400).json({ success: false, error: 'Full Name, Roll Number, and Assessment are required' });
+    const {
+      assessmentId,
+      assessment_id,
+      selected_set,
+      selectedSet,
+      fullName,
+      student_name,
+      rollNumber,
+      roll_number,
+      email,
+      organization
+    } = req.body;
+
+    const setChoice = selected_set || selectedSet || assessment_id || assessmentId;
+    const name = fullName || student_name;
+    const roll = rollNumber || roll_number;
+
+    if (!setChoice || !name || !roll) {
+      return res.status(400).json({ success: false, error: 'Full Name, Roll Number, and Set Selection (Set A or Set B) are mandatory.' });
     }
 
     const sessionInfo = AssessmentService.startSession({
-      assessmentId,
-      fullName,
-      rollNumber,
+      assessmentId: setChoice,
+      selected_set: setChoice,
+      fullName: name,
+      student_name: name,
+      rollNumber: roll,
+      roll_number: roll,
       email,
       organization
     });

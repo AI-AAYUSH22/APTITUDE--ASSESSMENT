@@ -80,19 +80,41 @@ class AssessmentService {
   /**
    * Start or resume a secure assessment session for a candidate
    */
-  static startSession({ assessmentId, fullName, rollNumber, email = '', organization = '' }) {
-    const assessment = db.prepare('SELECT * FROM assessments WHERE id = ? AND isActive = 1').get(assessmentId);
+  static startSession({ assessmentId, selected_set, selectedSet, fullName, student_name, rollNumber, roll_number, email = '', organization = '' }) {
+    const rawSet = (selected_set || selectedSet || assessmentId || '').toString().trim();
+    const upperSet = rawSet.toUpperCase();
+    let normAssessmentId = '';
+
+    if (upperSet === 'SET_A' || upperSet === 'SET-A' || upperSet === 'SETA' || upperSet === 'SET A' || rawSet === 'set-a') {
+      normAssessmentId = 'set-a';
+    } else if (upperSet === 'SET_B' || upperSet === 'SET-B' || upperSet === 'SETB' || upperSet === 'SET B' || rawSet === 'set-b') {
+      normAssessmentId = 'set-b';
+    } else {
+      throw new Error('Please select a valid Assessment Set (Set A or Set B).');
+    }
+
+    const candidateName = (fullName || student_name || '').trim();
+    const candidateRoll = (rollNumber || roll_number || '').trim();
+
+    if (!candidateName) {
+      throw new Error('Full Name is mandatory.');
+    }
+    if (!candidateRoll) {
+      throw new Error('Roll Number / Student ID is mandatory.');
+    }
+
+    const assessment = db.prepare('SELECT * FROM assessments WHERE id = ? AND isActive = 1').get(normAssessmentId);
     if (!assessment) {
       throw new Error('Assessment not found or inactive');
     }
 
-    const candidate = this.registerCandidate({ fullName, rollNumber, email, organization });
+    const candidate = this.registerCandidate({ fullName: candidateName, rollNumber: candidateRoll, email, organization });
 
     // Check if candidate already has an active session for this assessment
     const existingSession = db.prepare(`
       SELECT * FROM assessment_sessions
       WHERE candidateId = ? AND assessmentId = ? AND status = 'ACTIVE'
-    `).get(candidate.id, assessmentId);
+    `).get(candidate.id, normAssessmentId);
 
     const now = Date.now();
 
@@ -108,7 +130,7 @@ class AssessmentService {
     // Check if candidate already completed this assessment
     const completedResult = db.prepare(`
       SELECT * FROM results WHERE candidateId = ? AND assessmentId = ?
-    `).get(candidate.id, assessmentId);
+    `).get(candidate.id, normAssessmentId);
 
     if (completedResult) {
       return {
@@ -119,7 +141,7 @@ class AssessmentService {
     }
 
     // Fetch all questions for this assessment
-    const allQuestions = db.prepare('SELECT id, questionNumber, section, optionsJson, correctOptionId FROM questions WHERE assessmentId = ?').all(assessmentId);
+    const allQuestions = db.prepare('SELECT id, questionNumber, section, optionsJson, correctOptionId FROM questions WHERE assessmentId = ?').all(normAssessmentId);
     if (allQuestions.length === 0) {
       throw new Error('No questions found in this assessment pool');
     }
@@ -161,7 +183,7 @@ class AssessmentService {
       sessionId,
       sessionToken,
       candidate.id,
-      assessmentId,
+      normAssessmentId,
       now,
       expiresAt,
       randomizedOrder.length,
@@ -184,7 +206,7 @@ class AssessmentService {
           candidate.id,
           candidate.fullName,
           candidate.rollNumber,
-          assessmentId,
+          normAssessmentId,
           qId
         );
       });

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ShieldCheck, BrainCircuit, Timer, Shuffle, Lock, ArrowRight, CheckCircle2, Award, Zap, FileText } from 'lucide-react';
 import { assessmentApi } from '../api';
 
-export default function LandingPage({ onSelectAssessment, onNavigateAdmin }) {
-  const [assessments, setAssessments] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function LandingPage({ onStartRegistration, onSelectAssessment, onNavigateAdmin }) {
+  const handleStart = onStartRegistration || onSelectAssessment;
 
   useEffect(() => {
     async function loadAssessments() {
@@ -76,112 +75,85 @@ export default function LandingPage({ onSelectAssessment, onNavigateAdmin }) {
           </div>
         </div>
 
-        {/* Assessment Selection Header */}
-        <div className="text-left mb-6">
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <BrainCircuit className="w-6 h-6 text-indigo-400" />
-            <span>Select Your Assessment Paper</span>
-          </h2>
-          <p className="text-sm text-slate-400">Choose from the two independent assessment papers below to begin.</p>
+        {/* Single Primary Action Banner (Set Selection is inside Registration Form) */}
+        <div className="max-w-3xl mx-auto mb-14">
+          <div className="relative p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-indigo-500/30 shadow-2xl backdrop-blur-xl overflow-hidden group">
+            {/* Top Glow Bar */}
+            <div className="absolute -top-px left-8 right-8 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
+            
+            <div className="relative z-10 flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center mb-5 text-indigo-400 shadow-lg shadow-indigo-600/20 group-hover:scale-105 transition-transform duration-300">
+                <BrainCircuit className="w-8 h-8" />
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+                Ready to Begin Your Assessment?
+              </h2>
+              <p className="text-sm text-slate-300 max-w-lg mb-8 leading-relaxed">
+                Click below to register your identity (Full Name, Roll Number) and select your assigned assessment set (<strong className="text-indigo-300">Set A</strong> or <strong className="text-purple-300">Set B</strong>).
+              </p>
+
+              {/* Single Start Aptitude Test Button */}
+              <button
+                id="start-aptitude-test-btn"
+                onClick={handleStart}
+                className="w-full sm:w-auto min-w-[280px] py-4 px-8 rounded-2xl font-black text-base flex items-center justify-center gap-3 text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              >
+                <span>Start Aptitude Test</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-200" />
+              </button>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  30 Multiple-Choice Questions
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
+                  <Timer className="w-3.5 h-3.5 text-amber-400" />
+                  30 Minutes Server Sync
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+                  Anti-Cheat Protection
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Assessment Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-          {loading ? (
-            <div className="col-span-2 py-16 text-center bg-slate-900/40 rounded-3xl border border-slate-800 animate-pulse">
-              <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-sm text-slate-400">Loading available assessment modules...</p>
+        {/* Assessment Structure & Syllabus Overview */}
+        <div className="max-w-4xl mx-auto text-left">
+          <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-indigo-400" />
+              <span>Assessment Structure & Section Breakdown</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+                <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Section 1</span>
+                <h4 className="text-sm font-bold text-white mt-1">🧠 Logical Reasoning</h4>
+                <p className="text-xs text-slate-400 mt-1">10 Questions • 10 Marks</p>
+                <p className="text-[11px] text-slate-500 mt-2">Patterns, analytical logic, deduction, and sequences.</p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Section 2</span>
+                <h4 className="text-sm font-bold text-white mt-1">📐 Basic Mathematics</h4>
+                <p className="text-xs text-slate-400 mt-1">10 Questions • 10 Marks</p>
+                <p className="text-[11px] text-slate-500 mt-2">Quantitative aptitude, algebra, percentages, and probability.</p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+                <span className="text-xs font-bold text-pink-400 uppercase tracking-wider">Section 3</span>
+                <h4 className="text-sm font-bold text-white mt-1">💻 DSA & Algorithms</h4>
+                <p className="text-xs text-slate-400 mt-1">10 Questions • 10 Marks</p>
+                <p className="text-[11px] text-slate-500 mt-2">Data structures, recursion, Java code tracing, and time complexity.</p>
+              </div>
             </div>
-          ) : assessments.length === 0 ? (
-            <div className="col-span-2 py-12 text-center bg-slate-900/50 rounded-3xl border border-slate-800">
-              <p className="text-slate-300">No active assessments found.</p>
-            </div>
-          ) : (
-            assessments.map((test, index) => {
-              const isSetA = test.id === 'set-a';
-              return (
-                <div
-                  key={test.id}
-                  className="group relative bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col justify-between"
-                >
-                  {/* Glowing Top Corner */}
-                  <div className={`absolute -top-px left-10 right-10 h-0.5 bg-gradient-to-r ${isSetA ? 'from-indigo-500 via-blue-500 to-indigo-500' : 'from-purple-500 via-pink-500 to-purple-500'} opacity-60 group-hover:opacity-100 transition-opacity`} />
-
-                  <div>
-                    {/* Header Badges */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase ${
-                        isSetA 
-                          ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30' 
-                          : 'bg-purple-500/15 text-purple-300 border border-purple-500/30'
-                      }`}>
-                        Paper {isSetA ? '1 (Set-A)' : '2 (Set-B)'}
-                      </span>
-                      <span className="text-xs text-slate-400 flex items-center gap-1 font-mono">
-                        <Timer className="w-3.5 h-3.5 text-slate-400" />
-                        {test.durationMinutes} Minutes
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-2xl font-extrabold text-white mb-2 group-hover:text-indigo-300 transition-colors">
-                      {test.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-slate-300 mb-6 line-clamp-2">
-                      {test.description}
-                    </p>
-
-                    {/* Quick Specs Table */}
-                    <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-slate-950/60 border border-slate-800/80 mb-6 text-center">
-                      <div>
-                        <p className="text-[11px] text-slate-400">Total Questions</p>
-                        <p className="text-base font-bold text-white">{test.questionCount || 30}</p>
-                      </div>
-                      <div className="border-x border-slate-800">
-                        <p className="text-[11px] text-slate-400">Total Marks</p>
-                        <p className="text-base font-bold text-indigo-400">{test.totalMarks} Marks</p>
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-slate-400">Passing Score</p>
-                        <p className="text-base font-bold text-emerald-400">{test.passPercentage}%</p>
-                      </div>
-                    </div>
-
-                    {/* Section Breakdown Pills */}
-                    <div className="space-y-2 mb-6">
-                      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Evaluation Sections:</p>
-                      <div className="flex flex-wrap gap-2 text-xs">
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 border border-slate-700/60">
-                          🧠 Logical Reasoning (10 Qs)
-                        </span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 border border-slate-700/60">
-                          📐 Basic Mathematics (10 Qs)
-                        </span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 border border-slate-700/60">
-                          💻 DSA & Coding (10 Qs)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Launch Button */}
-                  <button
-                    onClick={() => onSelectAssessment(test)}
-                    className={`w-full py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 text-white shadow-lg transition-all ${
-                      isSetA
-                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 shadow-indigo-600/25'
-                        : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-purple-600/25'
-                    }`}
-                  >
-                    <span>Attempt {isSetA ? 'Assessment 1 (Set A)' : 'Assessment 2 (Set B)'}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              );
-            })
-          )}
+          </div>
         </div>
       </div>
     </div>
