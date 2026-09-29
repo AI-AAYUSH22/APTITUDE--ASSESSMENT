@@ -12,13 +12,15 @@ export default function AdminPortal({ onGoHome }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
-  const [activeTab, setActiveTab] = useState('overview'); // overview, assessments, questions, results, import
+  const [activeTab, setActiveTab] = useState('overview'); // overview, assessments, questions, results, violations, import
 
   // Data states
   const [stats, setStats] = useState(null);
   const [assessments, setAssessments] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [results, setResults] = useState([]);
+  const [violationsData, setViolationsData] = useState(null);
+  const [selectedViolationSession, setSelectedViolationSession] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Filter states
@@ -68,19 +70,30 @@ export default function AdminPortal({ onGoHome }) {
   const loadAllAdminData = async () => {
     setLoading(true);
     try {
-      const [statsRes, assessRes, resultsRes] = await Promise.all([
+      const [statsRes, assessRes, resultsRes, violationsRes] = await Promise.all([
         assessmentApi.getAdminStats(),
         assessmentApi.getAdminAssessments(),
-        assessmentApi.getAdminResults()
+        assessmentApi.getAdminResults(),
+        assessmentApi.getViolations().catch(() => ({ data: null }))
       ]);
       setStats(statsRes.data);
       setAssessments(assessRes.data);
       setResults(resultsRes.data);
+      if (violationsRes?.data) setViolationsData(violationsRes.data);
       loadQuestions(selectedAssessmentId, selectedSection);
     } catch (err) {
       console.error('Error loading admin data:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadViolations = async () => {
+    try {
+      const res = await assessmentApi.getViolations();
+      setViolationsData(res.data);
+    } catch (err) {
+      console.error('Error loading violations:', err);
     }
   };
 
@@ -312,6 +325,21 @@ export default function AdminPortal({ onGoHome }) {
         >
           <Users className="w-4 h-4" />
           <span>Candidate Results ({results.length})</span>
+        </button>
+
+        <button
+          onClick={() => {
+            setActiveTab('violations');
+            loadViolations();
+          }}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+            activeTab === 'violations'
+              ? 'bg-rose-600 text-white shadow'
+              : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+          }`}
+        >
+          <AlertTriangle className="w-4 h-4 text-rose-400" />
+          <span>🚨 Cheating & Proctoring Log ({violationsData?.summary?.flaggedStudentsCount || 0})</span>
         </button>
 
         <button
@@ -798,7 +826,142 @@ export default function AdminPortal({ onGoHome }) {
         </div>
       )}
 
-      {/* TAB 5: IMPORT QUESTIONS WIZARD */}
+      {/* TAB 5: CHEATING & PROCTORING AUDIT MONITOR */}
+      {activeTab === 'violations' && (
+        <div className="space-y-6">
+          {/* Summary Metrics */}
+          {violationsData?.summary && (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/30">
+                <p className="text-xs text-rose-300 mb-1">Total Cheating Incidents</p>
+                <p className="text-3xl font-extrabold text-white">{violationsData.summary.totalViolationsRecorded}</p>
+                <p className="text-[11px] text-rose-400 mt-1">Tab switches, window blur & exits</p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30">
+                <p className="text-xs text-amber-300 mb-1">Flagged Candidates</p>
+                <p className="text-3xl font-extrabold text-amber-400">{violationsData.summary.flaggedStudentsCount}</p>
+                <p className="text-[11px] text-slate-400 mt-1">Students with &ge; 1 violation</p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+                <p className="text-xs text-slate-400 mb-1">Auto-Locked Submissions</p>
+                <p className="text-3xl font-extrabold text-rose-400">{violationsData.summary.autoLockedCount}</p>
+                <p className="text-[11px] text-slate-400 mt-1">Exceeded max violation limit</p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+                <p className="text-xs text-slate-400 mb-1">Monitored Exam Sessions</p>
+                <p className="text-3xl font-extrabold text-indigo-300">{violationsData.summary.totalMonitoredSessions}</p>
+                <p className="text-[11px] text-slate-400 mt-1">Real-time anti-cheat protected</p>
+              </div>
+            </div>
+          )}
+
+          {/* Table Controls */}
+          <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <div className="flex items-center gap-2 flex-1 max-w-md">
+              <Search className="w-4 h-4 text-slate-500" />
+              <input
+                type="text"
+                placeholder="Search flagged student name, roll number..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-indigo-500"
+              />
+            </div>
+
+            <button
+              onClick={loadViolations}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>Refresh Cheating Logs</span>
+            </button>
+          </div>
+
+          {/* Violations Table */}
+          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 overflow-x-auto">
+            <table className="w-full text-left text-xs text-slate-300">
+              <thead className="bg-slate-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                <tr>
+                  <th className="p-3">Student Name</th>
+                  <th className="p-3">Roll Number</th>
+                  <th className="p-3">Assessment Set</th>
+                  <th className="p-3">Violation Count</th>
+                  <th className="p-3">Session Status</th>
+                  <th className="p-3">Latest Incident Reason</th>
+                  <th className="p-3 text-right">Audit Trail</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60">
+                {(violationsData?.violations || [])
+                  .filter(v =>
+                    !searchQuery ||
+                    v.studentName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    v.rollNumber?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    v.assessmentTitle?.toLowerCase().includes(searchQuery.toLowerCase())
+                  )
+                  .map((v) => {
+                    const lastViolation = v.violationsLog && v.violationsLog.length > 0 ? v.violationsLog[v.violationsLog.length - 1] : null;
+                    const isSevere = v.violationCount >= (v.maxViolations || 3);
+                    return (
+                      <tr key={v.sessionId} className={v.violationCount > 0 ? "hover:bg-rose-950/10 bg-rose-950/5" : "hover:bg-slate-850/50"}>
+                        <td className="p-3">
+                          <strong className="text-white block font-semibold">{v.studentName}</strong>
+                          <span className="text-slate-500 text-[11px]">{v.organization || 'Candidate'}</span>
+                        </td>
+                        <td className="p-3 font-mono font-bold text-indigo-300">{v.rollNumber}</td>
+                        <td className="p-3 text-slate-300">{v.assessmentTitle}</td>
+                        <td className="p-3">
+                          <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold ${
+                            isSevere
+                              ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
+                              : v.violationCount > 0
+                              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                              : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                          }`}>
+                            {v.violationCount > 0 ? <AlertTriangle className="w-3 h-3" /> : <CheckCircle2 className="w-3 h-3" />}
+                            {v.violationCount} / {v.maxViolations || 3}
+                          </span>
+                        </td>
+                        <td className="p-3">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                            v.status === 'ACTIVE'
+                              ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30'
+                              : v.status === 'EXPIRED' || isSevere
+                              ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30 font-extrabold'
+                              : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                          }`}>
+                            {v.status === 'EXPIRED' || isSevere ? 'DISQUALIFIED / LOCKED' : v.status}
+                          </span>
+                        </td>
+                        <td className="p-3 text-slate-300 max-w-xs truncate text-[11px]">
+                          {lastViolation ? (
+                            <span className="text-rose-300 font-medium">{lastViolation.details || lastViolation.type}</span>
+                          ) : (
+                            <span className="text-slate-500 italic">No cheating detected</span>
+                          )}
+                        </td>
+                        <td className="p-3 text-right">
+                          <button
+                            onClick={() => setSelectedViolationSession(v)}
+                            className="px-2.5 py-1 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-800/40 font-semibold text-[11px] transition inline-flex items-center gap-1"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Audit Log ({v.violationsLog?.length || 0})</span>
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 6: IMPORT QUESTIONS WIZARD */}
       {activeTab === 'import' && (
         <div className="max-w-3xl mx-auto p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-6">
           <div>
@@ -859,6 +1022,80 @@ export default function AdminPortal({ onGoHome }) {
           >
             Import Questions into Database
           </button>
+        </div>
+      )}
+
+      {/* PROCTORING & CHEATING AUDIT TIMELINE MODAL */}
+      {selectedViolationSession && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button
+              onClick={() => setSelectedViolationSession(null)}
+              className="absolute top-6 right-6 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header */}
+            <div className="border-b border-slate-800 pb-6 mb-6">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-2 inline-flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5" />
+                Anti-Cheat Proctoring Audit Log
+              </span>
+              <h2 className="text-2xl font-extrabold text-white">
+                {selectedViolationSession.studentName}
+              </h2>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 mt-2">
+                <span>Roll No: <strong className="text-indigo-300 font-mono">{selectedViolationSession.rollNumber}</strong></span>
+                <span>•</span>
+                <span>Set: <strong className="text-white">{selectedViolationSession.assessmentTitle}</strong></span>
+                <span>•</span>
+                <span>Violations: <strong className="text-rose-400 font-bold">{selectedViolationSession.violationCount} / {selectedViolationSession.maxViolations || 3}</strong></span>
+                <span>•</span>
+                <span>Status: <strong className={selectedViolationSession.status === 'EXPIRED' ? 'text-rose-400' : 'text-amber-400'}>{selectedViolationSession.status}</strong></span>
+              </div>
+            </div>
+
+            {/* Timeline of Cheating Incidents */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center justify-between">
+                <span>Recorded Incident Timeline</span>
+                <span className="text-xs font-normal text-slate-400">Total: {selectedViolationSession.violationsLog?.length || 0} event(s)</span>
+              </h3>
+
+              {(!selectedViolationSession.violationsLog || selectedViolationSession.violationsLog.length === 0) ? (
+                <div className="p-8 text-center rounded-2xl bg-slate-950/60 border border-slate-800 text-slate-400 text-xs">
+                  <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+                  <p className="font-semibold text-white">Clean Proctoring Record</p>
+                  <p className="mt-1">No browser switching, tab switching, or fullscreen violations logged for this candidate session.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {selectedViolationSession.violationsLog.map((log, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-2xl bg-rose-950/20 border border-rose-500/30 flex items-start gap-3 text-xs"
+                    >
+                      <div className="w-7 h-7 rounded-xl bg-rose-900/50 text-rose-300 flex items-center justify-center font-mono font-bold flex-shrink-0">
+                        #{idx + 1}
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-rose-300 uppercase tracking-wide text-[11px]">
+                            {log.type || 'BROWSER_VIOLATION'}
+                          </span>
+                          <span className="text-[11px] text-slate-400 font-mono">
+                            {log.timestamp ? new Date(log.timestamp).toLocaleTimeString() : 'N/A'}
+                          </span>
+                        </div>
+                        <p className="text-slate-200 font-medium">{log.details}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
 

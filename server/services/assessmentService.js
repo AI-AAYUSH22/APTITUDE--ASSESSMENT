@@ -58,6 +58,18 @@ class AssessmentService {
     const cleanName = fullName.trim();
     const cleanRoll = rollNumber.trim().toUpperCase();
 
+    // Check if this Roll Number has already completed an assessment
+    const existingResult = db.prepare(`
+      SELECT r.*, a.title as assessmentTitle
+      FROM results r
+      JOIN assessments a ON r.assessmentId = a.id
+      WHERE r.rollNumber = ?
+    `).get(cleanRoll);
+
+    if (existingResult) {
+      throw new Error(`Access Denied: Roll Number "${cleanRoll}" has already submitted an assessment (${existingResult.assessmentTitle}) with score ${existingResult.score}/${existingResult.maxScore}. Duplicate attempts are strictly prohibited.`);
+    }
+
     let candidate = db.prepare('SELECT * FROM candidates WHERE rollNumber = ?').get(cleanRoll);
     if (!candidate) {
       const candidateId = uuidv4();
@@ -96,13 +108,25 @@ class AssessmentService {
     }
 
     const candidateName = (fullName || student_name || '').trim();
-    const candidateRoll = (rollNumber || roll_number || '').trim();
+    const candidateRoll = (rollNumber || roll_number || '').trim().toUpperCase();
 
     if (!candidateName) {
       throw new Error('Full Name is mandatory.');
     }
     if (!candidateRoll) {
       throw new Error('Roll Number / Student ID is mandatory.');
+    }
+
+    // Strict duplicate roll number check across all submitted results
+    const existingAnyResult = db.prepare(`
+      SELECT r.*, a.title as assessmentTitle
+      FROM results r
+      JOIN assessments a ON r.assessmentId = a.id
+      WHERE r.rollNumber = ?
+    `).get(candidateRoll);
+
+    if (existingAnyResult) {
+      throw new Error(`Access Denied: Roll Number "${candidateRoll}" has already submitted an assessment (${existingAnyResult.assessmentTitle}) with score ${existingAnyResult.score}/${existingAnyResult.maxScore}. Re-attempt is strictly forbidden.`);
     }
 
     const assessment = db.prepare('SELECT * FROM assessments WHERE id = ? AND isActive = 1').get(normAssessmentId);
@@ -129,18 +153,19 @@ class AssessmentService {
       }
     }
 
-    // Check if candidate already completed this assessment
-    const completedResult = db.prepare(`
-      SELECT * FROM results WHERE candidateId = ? AND assessmentId = ?
-    `).get(candidate.id, normAssessmentId);
+    // Check if candidate has completed or expired sessions for any other set
+    const previousSession = db.prepare(`
+      SELECT s.*, a.title as assessmentTitle
+      FROM assessment_sessions s
+      JOIN assessments a ON s.assessmentId = a.id
+      WHERE s.candidateId = ? AND (s.status = 'COMPLETED' OR s.status = 'EXPIRED')
+    `).get(candidate.id);
 
-    if (completedResult) {
-      return {
-        alreadyCompleted: true,
-        resultId: completedResult.id,
-        message: 'You have already completed this assessment.'
-      };
+    if (previousSession) {
+      throw new Error(`Access Denied: Candidate "${candidateRoll}" has already participated in ${previousSession.assessmentTitle}. Repeated attempts are not allowed.`);
     }
+
+
 
     // Fetch all questions for this assessment
     const allQuestions = db.prepare('SELECT id, questionNumber, section, optionsJson, correctOptionId FROM questions WHERE assessmentId = ?').all(normAssessmentId);

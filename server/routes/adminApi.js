@@ -30,6 +30,46 @@ router.post('/login', (req, res) => {
   return res.status(401).json({ success: false, error: 'Invalid admin username or password' });
 });
 
+// Proctoring & Anti-Cheat Violations Monitor
+router.get('/violations', adminAuth, (req, res) => {
+  try {
+    const sessions = db.prepare(`
+      SELECT s.id as sessionId, s.sessionToken, s.status, s.startedAt, s.completedAt,
+             s.violationCount, s.violationsLogJson,
+             c.fullName as studentName, c.rollNumber, c.email, c.organization,
+             a.title as assessmentTitle, a.maxViolations,
+             r.score, r.maxScore, r.passed
+      FROM assessment_sessions s
+      JOIN candidates c ON s.candidateId = c.id
+      JOIN assessments a ON s.assessmentId = a.id
+      LEFT JOIN results r ON s.id = r.sessionId
+      ORDER BY s.violationCount DESC, s.startedAt DESC
+    `).all().map(s => ({
+      ...s,
+      violationsLog: JSON.parse(s.violationsLogJson || '[]')
+    }));
+
+    const totalViolationsRecorded = sessions.reduce((acc, s) => acc + (s.violationCount || 0), 0);
+    const flaggedStudents = sessions.filter(s => s.violationCount > 0);
+    const autoLockedCount = sessions.filter(s => s.status === 'EXPIRED' || (s.violationCount >= s.maxViolations)).length;
+
+    res.json({
+      success: true,
+      data: {
+        summary: {
+          totalViolationsRecorded,
+          flaggedStudentsCount: flaggedStudents.length,
+          autoLockedCount,
+          totalMonitoredSessions: sessions.length
+        },
+        violations: sessions
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // Admin stats: Comprehensive Overall Statistics + Set A & Set B breakdown
 router.get('/stats', adminAuth, (req, res) => {
   try {

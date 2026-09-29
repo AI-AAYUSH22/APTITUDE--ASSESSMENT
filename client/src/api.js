@@ -117,5 +117,6 @@ export const assessmentApi = {
     const query = new URLSearchParams(params).toString();
     return fetchApi(`/admin/results${query ? `?${query}` : ''}`);
   },
-  getStudentResponses: (resultId) => fetchApi(`/admin/results/${resultId}/responses`)
+  getStudentResponses: (resultId) => fetchApi(`/admin/results/${resultId}/responses`),
+  getViolations: () => fetchApi('/admin/violations')
 };

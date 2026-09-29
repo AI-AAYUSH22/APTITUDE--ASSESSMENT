@@ -285,8 +285,15 @@ export default function ExamPortal({ sessionData, onCompleteExam }) {
       }
     };
 
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !isSubmittingRef.current) {
+        triggerViolation('Candidate exited Fullscreen Mode / attempted browser switch.');
+      }
+    };
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('blur', handleWindowBlur);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('copy', handleCopyPaste);
     document.addEventListener('paste', handleCopyPaste);
@@ -297,6 +304,7 @@ export default function ExamPortal({ sessionData, onCompleteExam }) {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('blur', handleWindowBlur);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('copy', handleCopyPaste);
       document.removeEventListener('paste', handleCopyPaste);
