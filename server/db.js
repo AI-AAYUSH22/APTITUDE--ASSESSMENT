@@ -2,15 +2,39 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
 
-const dbPath = path.join(__dirname, '..', 'assessment.db');
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NOW_REGION);
+let dbPath;
+
+if (isServerless) {
+  dbPath = path.join('/tmp', 'assessment.db');
+  const rootDbPath = path.join(__dirname, '..', 'assessment.db');
+  if (!fs.existsSync(dbPath) && fs.existsSync(rootDbPath)) {
+    try {
+      fs.copyFileSync(rootDbPath, dbPath);
+    } catch (e) {
+      console.warn('Could not copy root database to /tmp:', e.message);
+    }
+  }
+} else {
+  dbPath = path.join(__dirname, '..', 'assessment.db');
+}
+
 const db = new Database(dbPath, { timeout: 10000 }); // 10s busy timeout for high concurrency
 
-// Enable WAL mode & performance pragmas for 300+ concurrent students
-db.pragma('journal_mode = WAL');
-db.pragma('synchronous = NORMAL');
-db.pragma('cache_size = -64000'); // 64MB cache
-db.pragma('foreign_keys = ON');
-db.pragma('temp_store = MEMORY');
+// Enable performance pragmas safely
+try {
+  if (!isServerless) {
+    db.pragma('journal_mode = WAL');
+  } else {
+    db.pragma('journal_mode = DELETE');
+  }
+  db.pragma('synchronous = NORMAL');
+  db.pragma('cache_size = -64000'); // 64MB cache
+  db.pragma('foreign_keys = ON');
+  db.pragma('temp_store = MEMORY');
+} catch (pragmaErr) {
+  console.warn('Pragma warning:', pragmaErr.message);
+}
 
 function initDb() {
   db.exec(`

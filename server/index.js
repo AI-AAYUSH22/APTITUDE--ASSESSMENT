@@ -43,10 +43,14 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 Assessment Platform Server running on port ${PORT}`);
-  console.log(`🔗 API Base: http://localhost:${PORT}/api`);
-  console.log(`🛡️ Restricted server-side mode active`);
-  console.log(`====================================================`);
-});
+if (require.main === module || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`🚀 Assessment Platform Server running on port ${PORT}`);
+    console.log(`🔗 API Base: http://localhost:${PORT}/api`);
+    console.log(`🛡️ Restricted server-side mode active`);
+    console.log(`====================================================`);
+  });
+}
+
+module.exports = app;

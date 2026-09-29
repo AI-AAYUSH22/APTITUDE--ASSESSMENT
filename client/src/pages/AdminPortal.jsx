@@ -55,7 +55,8 @@ export default function AdminPortal({ onGoHome }) {
       setIsAuthenticated(true);
       loadAllAdminData();
     } catch (err) {
-      setLoginError(err.message || 'Invalid admin credentials');
+      const msg = typeof err === 'string' ? err : (err.message || err.error || 'Invalid admin credentials');
+      setLoginError(typeof msg === 'string' ? msg : JSON.stringify(msg));
     }
   };
 
