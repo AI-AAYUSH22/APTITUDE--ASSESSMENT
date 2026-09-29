@@ -2,7 +2,14 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
 
-const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NOW_REGION);
+const isServerless = !!(
+  process.env.VERCEL || 
+  process.env.AWS_LAMBDA_FUNCTION_NAME || 
+  process.env.NOW_REGION || 
+  process.env.FIREBASE_CONFIG || 
+  process.env.K_SERVICE || 
+  process.env.FUNCTION_TARGET
+);
 let dbPath;
 
 if (isServerless) {

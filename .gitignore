@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 client/node_modules/
+functions/node_modules/
 
 # Production builds
 client/dist/
