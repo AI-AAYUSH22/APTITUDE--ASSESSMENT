@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Production builds
+client/dist/
+
+# Databases & local test DBs
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Scratch & test outputs
+scratch/
+*_extracted.txt
+
+# Environment variables
+.env
+.env.local
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

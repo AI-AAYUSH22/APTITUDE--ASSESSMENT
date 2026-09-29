@@ -1,0 +1,25 @@
+{
+  "name": "aptitude-assessment-platform",
+  "version": "1.0.0",
+  "description": "Secure, restricted-mode competitive aptitude assessment platform with server-side delivery and randomization",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "concurrently \"nodemon server/index.js\" \"cd client && npm run dev\"",
+    "build": "cd client && npm run build",
+    "serve": "node server/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "better-sqlite3": "^11.8.1",
+    "uuid": "^11.0.5",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}

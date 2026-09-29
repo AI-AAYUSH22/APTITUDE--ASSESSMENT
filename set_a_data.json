@@ -1,0 +1,902 @@
+[
+  {
+    "questionNumber": 1,
+    "section": "Logical Reasoning",
+    "questionText": "Find the next number in the series:\n4, 6, 9, 13, 18, ___",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "23"
+      },
+      {
+        "id": "B",
+        "text": "24"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "24",
+    "explanation": "The pattern is adding consecutive integers: +2, +3, +4, +5, +6. So, 18 + 6 = 24.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 2,
+    "section": "Logical Reasoning",
+    "questionText": "Find the missing term:\n3, 12, 48, 192, ___",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "576"
+      },
+      {
+        "id": "B",
+        "text": "720"
+      },
+      {
+        "id": "C",
+        "text": "768"
+      },
+      {
+        "id": "D",
+        "text": "800"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "768",
+    "explanation": "Each number is multiplied by 4: 3 \u00d7 4 = 12, 12 \u00d7 4 = 48, 48 \u00d7 4 = 192, 192 \u00d7 4 = 768.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 3,
+    "section": "Logical Reasoning",
+    "questionText": "In a certain coding system, each letter is replaced by its position value multiplied by 2. What is the code for \u201cBAD\u201d?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "2-2-8"
+      },
+      {
+        "id": "B",
+        "text": "4-2-8"
+      },
+      {
+        "id": "C",
+        "text": "4-1-8"
+      },
+      {
+        "id": "D",
+        "text": "2-4-8"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "4-2-8",
+    "explanation": "Alphabet positions: B=2, A=1, D=4. Multiplying each by 2 gives: B=4, A=2, D=8. Thus, 4-2-8.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 4,
+    "section": "Logical Reasoning",
+    "questionText": "Find the odd one out:\n64, 125, 216, 343, 512, 729, 800",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "125"
+      },
+      {
+        "id": "B",
+        "text": "343"
+      },
+      {
+        "id": "C",
+        "text": "800"
+      },
+      {
+        "id": "D",
+        "text": "729"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "800",
+    "explanation": "All numbers except 800 are perfect cubes: 4\u00b3=64, 5\u00b3=125, 6\u00b3=216, 7\u00b3=343, 8\u00b3=512, 9\u00b3=729. 800 is not a perfect cube.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 5,
+    "section": "Logical Reasoning",
+    "questionText": "Statements:\nAll engineers are graduates.\nSome graduates are unemployed.\n\nConclusions:\nI. Some engineers are unemployed\nII. Some graduates are engineers",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Only I follows"
+      },
+      {
+        "id": "B",
+        "text": "Only II follows"
+      },
+      {
+        "id": "C",
+        "text": "Both follow"
+      },
+      {
+        "id": "D",
+        "text": "None follow"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Only II follows",
+    "explanation": "Since 'All engineers are graduates', it implies 'Some graduates are engineers' (Conclusion II is valid). We cannot conclude that some engineers are unemployed without direct overlap given.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 6,
+    "section": "Logical Reasoning",
+    "questionText": "Find the next term:\nAB, DE, HI, MN, ___",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "QR"
+      },
+      {
+        "id": "B",
+        "text": "RS"
+      },
+      {
+        "id": "C",
+        "text": "ST"
+      },
+      {
+        "id": "D",
+        "text": "TU"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "ST",
+    "explanation": "Difference between start of pairs: A(1) + 3 = D(4), D(4) + 4 = H(8), H(8) + 5 = M(13), M(13) + 6 = S(19). Next consecutive pair is ST.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 7,
+    "section": "Logical Reasoning",
+    "questionText": "If in a code language, PEN = 123 and INK = 456, then PIN = ?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "145"
+      },
+      {
+        "id": "B",
+        "text": "132"
+      },
+      {
+        "id": "C",
+        "text": "153"
+      },
+      {
+        "id": "D",
+        "text": "143"
+      }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "143",
+    "explanation": "From PEN (1,2,3): P=1, E=2, N=3. From INK (4,5,6): I=4, N=wait/5, K=6. PIN uses P=1, I=4, N=3 -> 143 (or 145 if N mapped from INK).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 8,
+    "section": "Logical Reasoning",
+    "questionText": "A is the sister of B. B is the father of C. C is the son of D. How is A related to D?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Sister"
+      },
+      {
+        "id": "B",
+        "text": "Mother"
+      },
+      {
+        "id": "C",
+        "text": "Sister-in-law"
+      },
+      {
+        "id": "D",
+        "text": "Aunt"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "Sister-in-law",
+    "explanation": "B is C's father and C is D's son, so D is B's wife. A is B's sister, making A the sister-in-law of D.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 9,
+    "section": "Logical Reasoning",
+    "questionText": "What is the angle between the hour and minute hand at 5:20?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "40\u00b0"
+      },
+      {
+        "id": "B",
+        "text": "50\u00b0"
+      },
+      {
+        "id": "C",
+        "text": "60\u00b0"
+      },
+      {
+        "id": "D",
+        "text": "70\u00b0"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "40\u00b0",
+    "explanation": "Angle formula = |30H - (11/2)M| = |30(5) - 5.5(20)| = |150 - 110| = 40\u00b0.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 10,
+    "section": "Logical Reasoning",
+    "questionText": "If today is Friday, what day will it be after 75 days?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Sunday"
+      },
+      {
+        "id": "B",
+        "text": "Monday"
+      },
+      {
+        "id": "C",
+        "text": "Tuesday"
+      },
+      {
+        "id": "D",
+        "text": "Wednesday"
+      }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "Wednesday",
+    "explanation": "75 days \u00f7 7 = 10 weeks + 5 odd days. Friday + 5 days = Wednesday.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 11,
+    "section": "Basic Mathematics",
+    "questionText": "If X + 1/X = 4, find X\u00b2 + 1/X\u00b2 = ?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      },
+      {
+        "id": "D",
+        "text": "10"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "14",
+    "explanation": "Squaring both sides: (X + 1/X)\u00b2 = 4\u00b2 => X\u00b2 + 2 + 1/X\u00b2 = 16 => X\u00b2 + 1/X\u00b2 = 14.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 12,
+    "section": "Basic Mathematics",
+    "questionText": "Solve the quadratic equation:\nx\u00b2 \u2212 7x + 10 = 0",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "x = 2, 5"
+      },
+      {
+        "id": "B",
+        "text": "x = 3, 4"
+      },
+      {
+        "id": "C",
+        "text": "x = 1, 10"
+      },
+      {
+        "id": "D",
+        "text": "x = 5, 6"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "x = 2, 5",
+    "explanation": "(x \u2212 2)(x \u2212 5) = 0, therefore x = 2 or x = 5.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 13,
+    "section": "Basic Mathematics",
+    "questionText": "A train crosses a pole in 8 seconds and a platform of 160 m in 24 seconds. Find the speed of the train.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "10 m/s"
+      },
+      {
+        "id": "B",
+        "text": "20 m/s"
+      },
+      {
+        "id": "C",
+        "text": "25 m/s"
+      },
+      {
+        "id": "D",
+        "text": "30 m/s"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "10 m/s",
+    "explanation": "Let speed be v and train length be L. L = 8v. Platform crossing: (L + 160) = 24v => 8v + 160 = 24v => 16v = 160 => v = 10 m/s.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 14,
+    "section": "Basic Mathematics",
+    "questionText": "A sum becomes \u20b91210 in 2 years at 10% compound interest. Find the principal.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "1000"
+      },
+      {
+        "id": "B",
+        "text": "1100"
+      },
+      {
+        "id": "C",
+        "text": "900"
+      },
+      {
+        "id": "D",
+        "text": "950"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "1000",
+    "explanation": "Amount = P(1 + r/100)\u207f => 1210 = P(1 + 10/100)\u00b2 = P(1.21) => P = 1210 / 1.21 = 1000.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 15,
+    "section": "Basic Mathematics",
+    "questionText": "A and B can do a work in 15 days. B alone can do it in 20 days. In how many days can A alone do it?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "40"
+      },
+      {
+        "id": "B",
+        "text": "60"
+      },
+      {
+        "id": "C",
+        "text": "30"
+      },
+      {
+        "id": "D",
+        "text": "25"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "60",
+    "explanation": "1/A = 1/15 \u2212 1/20 = (4 \u2212 3)/60 = 1/60. So A alone takes 60 days.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 16,
+    "section": "Basic Mathematics",
+    "questionText": "Find the remainder when 3\u2075\u2070 is divided by 4.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "3"
+      },
+      {
+        "id": "D",
+        "text": "0"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "1",
+    "explanation": "3 \u2261 -1 (mod 4). Therefore 3\u2075\u2070 \u2261 (-1)\u2075\u2070 \u2261 1 (mod 4). The remainder is 1.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 17,
+    "section": "Basic Mathematics",
+    "questionText": "If sin \u03b8 = 5/13, find cos \u03b8.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "12/13"
+      },
+      {
+        "id": "B",
+        "text": "13/5"
+      },
+      {
+        "id": "C",
+        "text": "5/12"
+      },
+      {
+        "id": "D",
+        "text": "12/5"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "12/13",
+    "explanation": "cos\u00b2 \u03b8 = 1 - sin\u00b2 \u03b8 = 1 - 25/169 = 144/169 => cos \u03b8 = 12/13.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 18,
+    "section": "Basic Mathematics",
+    "questionText": "A person travels equal distances at speeds of 20 km/h and 30 km/h. Find the average speed.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "24 km/h"
+      },
+      {
+        "id": "B",
+        "text": "25 km/h"
+      },
+      {
+        "id": "C",
+        "text": "26 km/h"
+      },
+      {
+        "id": "D",
+        "text": "27 km/h"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "24 km/h",
+    "explanation": "Average speed for equal distances = 2xy / (x + y) = 2(20)(30)/(20 + 30) = 1200 / 50 = 24 km/h.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 19,
+    "section": "Basic Mathematics",
+    "questionText": "How many different arrangements can be made using the letters of the word \u201cLEVEL\u201d?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "60"
+      },
+      {
+        "id": "B",
+        "text": "120"
+      },
+      {
+        "id": "C",
+        "text": "30"
+      },
+      {
+        "id": "D",
+        "text": "20"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "30",
+    "explanation": "LEVEL has 5 letters: 2 L's, 2 E's, 1 V. Total arrangements = 5! / (2! \u00d7 2!) = 120 / 4 = 30.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 20,
+    "section": "Basic Mathematics",
+    "questionText": "The ratio of two numbers is 3:5 and their sum is 64. Find the larger number.",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "24"
+      },
+      {
+        "id": "B",
+        "text": "30"
+      },
+      {
+        "id": "C",
+        "text": "40"
+      },
+      {
+        "id": "D",
+        "text": "50"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "40",
+    "explanation": "3x + 5x = 64 => 8x = 64 => x = 8. The larger number is 5 \u00d7 8 = 40.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 21,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What is the worst-case time complexity of binary search?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "O(1)"
+      },
+      {
+        "id": "B",
+        "text": "O(n)"
+      },
+      {
+        "id": "C",
+        "text": "O(log n)"
+      },
+      {
+        "id": "D",
+        "text": "O(n log n)"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "O(log n)",
+    "explanation": "Binary search divides the search space in half at each step, yielding a worst-case time complexity of O(log n).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 22,
+    "section": "Data Structures & Algorithms",
+    "questionText": "Which data structure is used to implement recursion?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Queue"
+      },
+      {
+        "id": "B",
+        "text": "Stack"
+      },
+      {
+        "id": "C",
+        "text": "Array"
+      },
+      {
+        "id": "D",
+        "text": "Tree"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Stack",
+    "explanation": "Function call frames in recursion are managed using a call stack (LIFO order).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 23,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What is the average-case time complexity of Quick Sort?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "O(n)"
+      },
+      {
+        "id": "B",
+        "text": "O(n\u00b2)"
+      },
+      {
+        "id": "C",
+        "text": "O(log n)"
+      },
+      {
+        "id": "D",
+        "text": "O(n log n)"
+      }
+    ],
+    "correctOptionId": "D",
+    "correctAnswerText": "O(n log n)",
+    "explanation": "Quick Sort has an average time complexity of O(n log n) with balanced partitions.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 24,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What will be the output of the following Java code?",
+    "codeSnippet": "int i = 3;\nSystem.out.println(i++ * ++i);",
+    "options": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "15"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      },
+      {
+        "id": "D",
+        "text": "20"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "15",
+    "explanation": "i++ evaluates to 3 (then i becomes 4). Then ++i increments i to 5 and evaluates to 5. 3 * 5 = 15.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 25,
+    "section": "Data Structures & Algorithms",
+    "questionText": "Which traversal method is used in Breadth First Search?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Stack"
+      },
+      {
+        "id": "B",
+        "text": "Queue"
+      },
+      {
+        "id": "C",
+        "text": "Recursion"
+      },
+      {
+        "id": "D",
+        "text": "Array"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Queue",
+    "explanation": "BFS explores neighbors level by level using a FIFO Queue data structure.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 26,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What is the time complexity of inserting an element into a heap?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "O(1)"
+      },
+      {
+        "id": "B",
+        "text": "O(n)"
+      },
+      {
+        "id": "C",
+        "text": "O(log n)"
+      },
+      {
+        "id": "D",
+        "text": "O(n log n)"
+      }
+    ],
+    "correctOptionId": "C",
+    "correctAnswerText": "O(log n)",
+    "explanation": "Inserting an element appends it at the end and heapifies up along the tree height, taking O(log n) time.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Medium"
+  },
+  {
+    "questionNumber": 27,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What will be the output of the following Java statement?",
+    "codeSnippet": "System.out.println(5 + 5 + \"5\");",
+    "options": [
+      {
+        "id": "A",
+        "text": "105"
+      },
+      {
+        "id": "B",
+        "text": "55"
+      },
+      {
+        "id": "C",
+        "text": "1055"
+      },
+      {
+        "id": "D",
+        "text": "555"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "105",
+    "explanation": "Operators evaluate left-to-right: 5 + 5 evaluates to 10 (integer addition). Then 10 + \"5\" results in string concatenation \"105\".",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 28,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What is the best-case time complexity of Bubble Sort (when optimized with a swapped flag)?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "O(n)"
+      },
+      {
+        "id": "B",
+        "text": "O(n\u00b2)"
+      },
+      {
+        "id": "C",
+        "text": "O(log n)"
+      },
+      {
+        "id": "D",
+        "text": "O(1)"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "O(n)",
+    "explanation": "When the array is already sorted, an optimized bubble sort with a swap-check flag completes in a single pass: O(n).",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 29,
+    "section": "Data Structures & Algorithms",
+    "questionText": "What is a hash collision?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Two keys mapped to same index"
+      },
+      {
+        "id": "B",
+        "text": "Array overflow"
+      },
+      {
+        "id": "C",
+        "text": "Stack overflow"
+      },
+      {
+        "id": "D",
+        "text": "Sorting error"
+      }
+    ],
+    "correctOptionId": "A",
+    "correctAnswerText": "Two keys mapped to same index",
+    "explanation": "A hash collision occurs when two distinct keys produce the same hash code/index in a hash table.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  },
+  {
+    "questionNumber": 30,
+    "section": "Data Structures & Algorithms",
+    "questionText": "Which data structure is best for implementing BFS?",
+    "codeSnippet": null,
+    "options": [
+      {
+        "id": "A",
+        "text": "Stack"
+      },
+      {
+        "id": "B",
+        "text": "Queue"
+      },
+      {
+        "id": "C",
+        "text": "Tree"
+      },
+      {
+        "id": "D",
+        "text": "Graph"
+      }
+    ],
+    "correctOptionId": "B",
+    "correctAnswerText": "Queue",
+    "explanation": "Queue is used in Breadth First Search to visit nodes in FIFO level-by-level order.",
+    "marks": 1,
+    "negativeMarks": 0,
+    "difficulty": "Easy"
+  }
+]
